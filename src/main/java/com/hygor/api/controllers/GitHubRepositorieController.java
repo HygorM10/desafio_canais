@@ -29,7 +29,7 @@ public class GitHubRepositorieController {
 
 	private static Logger logger = LoggerFactory.getLogger(GitHubRepositorieController.class);
 
-	@GetMapping(value = "/repositories")
+	@GetMapping(value = "/repositories", produces="application/json")
 	public ResponseEntity<Object> getRepositories(@RequestParam("q") String q, @RequestParam("sort") String sort,
 			@RequestParam("page") Integer page) {
 
@@ -72,7 +72,7 @@ public class GitHubRepositorieController {
 
 	}
 
-	@GetMapping(value = "/pulls/{criador}/{repositorio}")
+	@GetMapping(value = "/pulls/{criador}/{repositorio}", produces="application/json")
 	public ResponseEntity<Object> getPulls(@PathVariable("criador") String criador,
 			@PathVariable("repositorio") String repositorio) {
 
