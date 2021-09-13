@@ -46,6 +46,8 @@ public class GitHubServicesTest {
 	private Pulls pulls = new Pulls();
 
 	private User user = new User();
+	
+	List<Repositorie> repositories = new ArrayList<Repositorie>();
 
 	List<Pulls> list = new ArrayList<Pulls>();
 	
@@ -64,7 +66,7 @@ public class GitHubServicesTest {
 		repositorie.setStargazers_count(123);
 		repositorie.setOwner(owner);
 
-		List<Repositorie> repositories = new ArrayList<Repositorie>();
+		repositories = new ArrayList<Repositorie>();
 
 		repositories.add(repositorie);
 
@@ -87,9 +89,9 @@ public class GitHubServicesTest {
 		
 		when(iRepositoriesGitHub.getRepositories(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt())).thenReturn(new ResponseEntity<Items>(items, HttpStatus.OK));
 		
-		Items return_service = gitHubServices.getRepositories("a", "d", 1);
+		List<Repositorie> return_service = gitHubServices.getRepositories("a", "d", 1);
 
-		assertEquals(return_service, items);
+		assertEquals(return_service, repositories);
 		
 	}
 	

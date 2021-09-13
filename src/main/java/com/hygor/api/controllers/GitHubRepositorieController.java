@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hygor.api.entities.domain.Items;
 import com.hygor.api.entities.domain.Pulls;
+import com.hygor.api.entities.domain.Repositorie;
 import com.hygor.api.entities.domain.exception.StashClientException;
 import com.hygor.api.services.GitHubServices;
 
@@ -37,7 +37,7 @@ public class GitHubRepositorieController {
 
 			logger.info("Iniciando consulta de repositorios");
 
-			Items body = gitHubServices.getRepositories(q, sort, page);
+			List<Repositorie> body = gitHubServices.getRepositories(q, sort, page);
 
 			logger.info("Finalizando consulta de repositorios");
 

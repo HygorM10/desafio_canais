@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.hygor.api.entities.domain.Items;
 import com.hygor.api.entities.domain.Pulls;
+import com.hygor.api.entities.domain.Repositorie;
 import com.hygor.api.usecase.IPullsGitHub;
 import com.hygor.api.usecase.IRepositoriesGitHub;
 
@@ -24,7 +25,7 @@ public class GitHubServices {
 	
 	private static Logger logger = LoggerFactory.getLogger(GitHubServices.class);
 
-	public Items getRepositories(String q, String sort, Integer page) throws Exception {
+	public List<Repositorie> getRepositories(String q, String sort, Integer page) throws Exception {
 		
 			logger.info("Iniciando chamada ao metodo de consultar repositorios do GitHub para os filtros: {}, {}, {}", q, sort, page);
 
@@ -32,7 +33,7 @@ public class GitHubServices {
 			
 			logger.info("Finalizando chamada de consultar repositorios. StatusCode de retorno: {}", entity.getStatusCode());
 			
-			return entity.getBody();
+			return entity.getBody().getItems();
 		
 	}
 

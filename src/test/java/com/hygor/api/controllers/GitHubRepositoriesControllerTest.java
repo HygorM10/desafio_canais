@@ -52,6 +52,8 @@ public class GitHubRepositoriesControllerTest {
 	private Pulls pulls = new Pulls();
 
 	private User user = new User();
+	
+	List<Repositorie> repositories = new ArrayList<Repositorie>();
 
 	List<Pulls> list = new ArrayList<Pulls>();
 
@@ -70,7 +72,7 @@ public class GitHubRepositoriesControllerTest {
 		repositorie.setStargazers_count(123);
 		repositorie.setOwner(owner);
 
-		List<Repositorie> repositories = new ArrayList<Repositorie>();
+		repositories = new ArrayList<Repositorie>();
 
 		repositories.add(repositorie);
 
@@ -94,11 +96,11 @@ public class GitHubRepositoriesControllerTest {
 		when(iRepositoriesGitHub.getRepositories(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt()))
 				.thenReturn(new ResponseEntity<Items>(items, HttpStatus.OK));
 		when(gitHubServices.getRepositories(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt()))
-				.thenReturn(items);
+				.thenReturn(repositories);
 
 		ResponseEntity<Object> entity = gitHubController.getRepositories("a", "d", 1);
 
-		assertEquals(entity.getBody(), items);
+		assertEquals(entity.getBody(), repositories);
 
 	}
 
@@ -108,7 +110,7 @@ public class GitHubRepositoriesControllerTest {
 		when(iRepositoriesGitHub.getRepositories(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt()))
 				.thenReturn(new ResponseEntity<Items>(HttpStatus.INTERNAL_SERVER_ERROR));
 		when(gitHubServices.getRepositories(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt()))
-				.thenReturn(items);
+				.thenReturn(repositories);
 
 		try {
 
